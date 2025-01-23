@@ -7,18 +7,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             try {
+                console.log("Page Loaded");
                 const urlParams = new URLSearchParams(window.location.search);
                 const authorizationCode = urlParams.get('code');
 
+                console.log("Authorization Code:", authorizationCode);
+
                 if (authorizationCode) {
-                    console.log('Authorization Code:', authorizationCode);
                     document.body.innerHTML = `<h1>Authorization Code Received</h1><p>${authorizationCode}</p>`;
                 } else {
-                    console.error('No Authorization Code Found');
                     document.body.innerHTML = '<h1>Error: Authorization Code Not Found</h1>';
                 }
             } catch (error) {
-                console.error('Error processing callback:', error);
+                console.error('Error:', error);
                 document.body.innerHTML = '<h1>Error: Unable to process callback</h1>';
             }
         });
@@ -27,3 +28,4 @@
 <body>
 </body>
 </html>
+
