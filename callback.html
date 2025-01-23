@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+    <script>
+        // URLパラメータからAuthorization Codeを取得
+        const urlParams = new URLSearchParams(window.location.search);
+        const authorizationCode = urlParams.get('code');
+
+        if (authorizationCode) {
+            console.log('Authorization Code:', authorizationCode);
+            document.body.innerHTML = `<h1>Authorization Code Received</h1><p>${authorizationCode}</p>`;
+        } else {
+            document.body.innerHTML = '<h1>Error: Authorization Code Not Found</h1>';
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
