@@ -6,21 +6,23 @@
     <title>Callback</title>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            try {
-                console.log("Page Loaded");
-                const urlParams = new URLSearchParams(window.location.search);
-                const authorizationCode = urlParams.get('code');
+            const urlParams = new URLSearchParams(window.location.search);
+            const authorizationCode = urlParams.get('code');
+            const ebayToken = urlParams.get('ebaytkn');
+            const tokenExpiration = urlParams.get('tknexp');
+            const username = urlParams.get('username');
 
-                console.log("Authorization Code:", authorizationCode);
-
-                if (authorizationCode) {
-                    document.body.innerHTML = `<h1>Authorization Code Received</h1><p>${authorizationCode}</p>`;
-                } else {
-                    document.body.innerHTML = '<h1>Error: Authorization Code Not Found</h1>';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                document.body.innerHTML = '<h1>Error: Unable to process callback</h1>';
+            if (authorizationCode) {
+                document.body.innerHTML = `<h1>Authorization Code Received</h1><p>${authorizationCode}</p>`;
+            } else if (ebayToken || tokenExpiration || username) {
+                document.body.innerHTML = `
+                    <h1>Token Data Received</h1>
+                    <p><strong>eBay Token:</strong> ${ebayToken || 'Not Provided'}</p>
+                    <p><strong>Token Expiration:</strong> ${tokenExpiration || 'Not Provided'}</p>
+                    <p><strong>Username:</strong> ${username || 'Not Provided'}</p>
+                `;
+            } else {
+                document.body.innerHTML = '<h1>Error: Authorization Code Not Found</h1>';
             }
         });
     </script>
@@ -28,4 +30,5 @@
 <body>
 </body>
 </html>
+
 
