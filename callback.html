@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Callback</title>
     <script>
-        // ページの読み込みが完了してからスクリプトを実行
         document.addEventListener('DOMContentLoaded', () => {
-            // URLパラメータからAuthorization Codeを取得
-            const urlParams = new URLSearchParams(window.location.search);
-            const authorizationCode = urlParams.get('code');
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const authorizationCode = urlParams.get('code');
 
-            if (authorizationCode) {
-                console.log('Authorization Code:', authorizationCode);
-                document.body.innerHTML = `<h1>Authorization Code Received</h1><p>${authorizationCode}</p>`;
-            } else {
-                document.body.innerHTML = '<h1>Error: Authorization Code Not Found</h1>';
+                if (authorizationCode) {
+                    console.log('Authorization Code:', authorizationCode);
+                    document.body.innerHTML = `<h1>Authorization Code Received</h1><p>${authorizationCode}</p>`;
+                } else {
+                    console.error('No Authorization Code Found');
+                    document.body.innerHTML = '<h1>Error: Authorization Code Not Found</h1>';
+                }
+            } catch (error) {
+                console.error('Error processing callback:', error);
+                document.body.innerHTML = '<h1>Error: Unable to process callback</h1>';
             }
         });
     </script>
@@ -23,5 +27,3 @@
 <body>
 </body>
 </html>
-
-
