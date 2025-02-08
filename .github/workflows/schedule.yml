@@ -2,8 +2,8 @@ name: Scheduled eBay Scraper
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # 毎日 日本時間12:00 に実行
-  workflow_dispatch:  # 手動実行できるようにする
+    - cron: '0 3 * * *'  # 毎日 日本時間12:00 に実行（UTC 3:00）
+  workflow_dispatch:  # 手動実行を可能にする
 
 jobs:
   run-scraper:
@@ -23,4 +23,5 @@ jobs:
 
       - name: Run the script
         run: node scrapeEbay.js
+
 
