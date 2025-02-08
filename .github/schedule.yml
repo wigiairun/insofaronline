@@ -1,0 +1,27 @@
+name: Scheduled eBay Scraper
+
+# 毎日午前3時 (UTC) に実行するスケジュール（cron 表記）
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  # 手動実行用のオプション（GitHub Actions の画面から「Run workflow」で実行可能）
+  workflow_dispatch:
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Scraper Script
+        run: npm start
