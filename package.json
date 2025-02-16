@@ -2,12 +2,15 @@
   "name": "ebay-scraper",
   "version": "1.0.0",
   "description": "Scrapes eBay data and updates Google Sheets via GAS",
-  "main": "yourScript.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node yourScript.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "puppeteer": "^19.11.0",
-    "node-fetch": "^2.6.7"
+    "axios": "^1.7.9",
+    "express": "^4.21.2",
+    "node-fetch": "^2.6.7",
+    "puppeteer": "^19.11.0"
   }
 }
+
